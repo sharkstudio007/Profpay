@@ -850,9 +850,18 @@ export default function App() {
               className="space-y-8"
             >
               <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                  <h2 className="text-3xl font-display font-bold text-white mb-2">Mes Groupes</h2>
-                  <p className="text-slate-400">Gérez vos élèves et suivez leurs paiements par séance.</p>
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => setActiveTab('dashboard')}
+                    className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-all border border-white/10"
+                    title="Retour au tableau de bord"
+                  >
+                    <ChevronRight size={18} className="rotate-180" />
+                  </button>
+                  <div>
+                    <h2 className="text-3xl font-display font-bold text-white mb-2">Mes Groupes</h2>
+                    <p className="text-slate-400">Gérez vos élèves et suivez leurs paiements par séance.</p>
+                  </div>
                 </div>
                 <form onSubmit={addGroup} className="flex gap-2">
                   <input
@@ -964,9 +973,18 @@ export default function App() {
               transition={{ duration: 0.3 }}
               className="space-y-8"
             >
-              <header>
-                <h2 className="text-3xl font-display font-bold text-white mb-2">Rechercher un élève</h2>
-                <p className="text-slate-400">Trouvez rapidement un élève parmi tous vos groupes.</p>
+              <header className="flex items-center gap-4">
+                <button
+                  onClick={() => setActiveTab('dashboard')}
+                  className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-all border border-white/10 flex-shrink-0"
+                  title="Retour au tableau de bord"
+                >
+                  <ChevronRight size={18} className="rotate-180" />
+                </button>
+                <div>
+                  <h2 className="text-3xl font-display font-bold text-white mb-2">Rechercher un élève</h2>
+                  <p className="text-slate-400">Trouvez rapidement un élève parmi tous vos groupes.</p>
+                </div>
               </header>
 
               <div className="relative">
