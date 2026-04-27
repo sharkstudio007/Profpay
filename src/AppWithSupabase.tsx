@@ -689,6 +689,13 @@ export default function App() {
 
         <div className="mt-auto hidden lg:flex flex-col gap-4">
           <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+            <div className="flex items-center gap-2 text-slate-500 mb-2">
+              <span className="text-[10px] font-bold uppercase tracking-widest">Compte</span>
+            </div>
+            <p className="text-xs text-slate-300 break-all font-medium">{user?.email}</p>
+          </div>
+
+          <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
             <div className="flex items-center gap-2 text-slate-500 mb-3">
               <Settings size={14} />
               <span className="text-[10px] font-bold uppercase tracking-widest">Configuration</span>
