@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-[#050505] text-white antialiased;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(255, 255, 255, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(255, 255, 255, 0.02) 0px, transparent 50%);
+  }
+}
+
+.neon-white-bg {
+  @apply bg-[#050505] relative overflow-hidden;
+}
+
+.neon-white-bg::before {
+  content: "";
+  @apply absolute inset-0 pointer-events-none;
+  background: radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.08), transparent 70%);
+}
+
+.neon-border {
+  @apply border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)];
+}
+
+.neon-glow-white {
+  @apply shadow-[0_0_20px_rgba(255,255,255,0.15)];
+}
+
+.dark-glass {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10;
+}
+
+.glass-card {
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+}
+
+.neo-card {
+  @apply bg-white border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300;
+}
