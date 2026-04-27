@@ -303,6 +303,18 @@ export default function App() {
     const isOverdue = sessionsOwed > 0;
     const remainingPaid = Math.max(0, paidCount - attendedCount);
 
+    // Calculate attendance since last payment
+    const lastPaymentDate = student.payments.length > 0
+      ? new Date(Math.max(...student.payments.map(p => new Date(p.date).getTime())))
+      : null;
+
+    const attendanceSinceLastPayment = lastPaymentDate
+      ? student.attendance.filter(a => new Date(a.date) > lastPaymentDate).length
+      : attendedCount;
+
+    const totalPresences = attendedCount;
+    const paymentBlocksCount = student.payments.length;
+
     return (
       <motion.div
         layout
@@ -349,20 +361,25 @@ export default function App() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 py-2 border-y border-white/5 mb-3">
-            <div className="flex flex-col">
-              <span className="text-[8px] text-slate-500 uppercase font-bold tracking-tighter">Présences</span>
-              <span className="text-xs font-bold text-white">{student.attendance.length}</span>
+          <div className="flex items-center gap-3 py-2 border-y border-white/5 mb-3 overflow-x-auto">
+            <div className="flex flex-col flex-shrink-0">
+              <span className="text-[8px] text-slate-500 uppercase font-bold tracking-tighter">Total Présences</span>
+              <span className="text-xs font-bold text-white">{totalPresences}</span>
             </div>
-            <div className="w-px h-4 bg-white/5" />
-            <div className="flex flex-col">
+            <div className="w-px h-4 bg-white/5 flex-shrink-0" />
+            <div className="flex flex-col flex-shrink-0">
+              <span className="text-[8px] text-slate-500 uppercase font-bold tracking-tighter">Présence</span>
+              <span className="text-xs font-bold text-emerald-400">{attendanceSinceLastPayment}</span>
+            </div>
+            <div className="w-px h-4 bg-white/5 flex-shrink-0" />
+            <div className="flex flex-col flex-shrink-0">
               <span className="text-[8px] text-slate-500 uppercase font-bold tracking-tighter">Séances Payées</span>
               <span className="text-xs font-bold text-white">{paidCount}</span>
             </div>
-            <div className="w-px h-4 bg-white/5" />
-            <div className="flex flex-col">
+            <div className="w-px h-4 bg-white/5 flex-shrink-0" />
+            <div className="flex flex-col flex-shrink-0">
               <span className="text-[8px] text-slate-500 uppercase font-bold tracking-tighter">Mois Payés</span>
-              <span className="text-xs font-bold text-white">{student.payments.length}</span>
+              <span className="text-xs font-bold text-white">{paymentBlocksCount}</span>
             </div>
           </div>
 
