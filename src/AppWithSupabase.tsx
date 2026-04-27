@@ -10,6 +10,7 @@ import {
   useGroups, useGroupStudents, useStudentAttendance,
   useStudentPayments, useUserSettings
 } from './lib/hooks';
+import { SplashScreen } from './components/SplashScreen';
 
 type Student = {
   id: string;
@@ -29,6 +30,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [isSignUp, setIsSignUp] = useState(false);
   const [authError, setAuthError] = useState('');
+  const [showSplash, setShowSplash] = useState(true);
 
   // UI State
   const [newGroupName, setNewGroupName] = useState('');
@@ -468,6 +470,10 @@ export default function App() {
   const totalSessions = groups.reduce((acc, g) => {
     return acc + g.students.reduce((sAcc, s) => sAcc + s.attendance.length, 0);
   }, 0);
+
+  if (showSplash) {
+    return <SplashScreen onComplete={() => setShowSplash(false)} />;
+  }
 
   if (loading) {
     return (
