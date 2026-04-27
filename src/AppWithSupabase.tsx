@@ -303,14 +303,8 @@ export default function App() {
     const isOverdue = sessionsOwed > 0;
     const remainingPaid = Math.max(0, paidCount - attendedCount);
 
-    // Calculate attendance since last payment
-    const lastPaymentDate = student.payments.length > 0
-      ? new Date(Math.max(...student.payments.map(p => new Date(p.date).getTime())))
-      : null;
-
-    const attendanceSinceLastPayment = lastPaymentDate
-      ? student.attendance.filter(a => new Date(a.date) > lastPaymentDate).length
-      : attendedCount;
+    // Calculate unpaid presences (attendance not covered by payments)
+    const attendanceSinceLastPayment = Math.max(0, attendedCount - paidCount);
 
     const totalPresences = attendedCount;
     const paymentBlocksCount = student.payments.length;
